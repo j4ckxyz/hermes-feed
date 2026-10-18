@@ -1,0 +1,53 @@
+/* Tailwind without preflight, every class prefixed `hf:` so nothing leaks into the host dashboard. */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme) prefix(hf);
+@import "tailwindcss/utilities.css" layer(utilities) prefix(hf);
+@source "./";
+
+@custom-variant dark (&:where(.hf-dark, .hf-dark *));
+
+@theme {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.hf-root {
+  --hf-bg: #ffffff;
+  --hf-fg: #111113;
+  --hf-muted: #6b6b73;
+  --hf-line: #ececef;
+  --hf-link: #2563eb;
+  --hf-chip: #f3f3f5;
+  --hf-sheet: #ffffff;
+  background: var(--hf-bg);
+  color: var(--hf-fg);
+  font-family: var(--hf-font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+.hf-root.hf-dark {
+  --hf-bg: #0c0c0e;
+  --hf-fg: #ececf0;
+  --hf-muted: #8d8d97;
+  --hf-line: #1f1f24;
+  --hf-link: #6ea8ff;
+  --hf-chip: #18181c;
+  --hf-sheet: #121215;
+  color-scheme: dark;
+}
+/* Resets live in the base layer so Tailwind utilities (utilities layer) still win. */
+@layer base {
+  .hf-root *, .hf-root *::before, .hf-root *::after { box-sizing: border-box; }
+  .hf-root button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+  .hf-root input { font: inherit; color: inherit; }
+  .hf-root a.hf-link { color: var(--hf-link); text-decoration: none; }
+  .hf-root a.hf-link:hover { text-decoration: underline; }
+  .hf-root .hf-scroll-x { scrollbar-width: none; }
+  .hf-root .hf-scroll-x::-webkit-scrollbar { display: none; }
+}
+
+@keyframes hf-fade-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+.hf-root .hf-enter { animation: hf-fade-in 240ms ease-out both; }
+@keyframes hf-spin { to { transform: rotate(360deg); } }
+.hf-root .hf-spin { animation: hf-spin 900ms linear infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .hf-root .hf-enter, .hf-root .hf-spin { animation: none; }
+}

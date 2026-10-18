@@ -1,0 +1,11 @@
+{
+  "name": "feed",
+  "label": "Feed",
+  "description": "Personal news feed that learns what you care about.",
+  "icon": "Sparkles",
+  "version": "0.1.0",
+  "tab": { "path": "/feed", "position": "after:chat" },
+  "entry": "dist/index.js",
+  "css": "dist/style.css",
+  "api": "plugin_api.py"
+}

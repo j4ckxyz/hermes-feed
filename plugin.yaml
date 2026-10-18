@@ -1,0 +1,24 @@
+name: feed
+version: 0.1.0
+description: "Muse-style personal news feed. Learns your interests from chats (they fade unless they keep coming up), searches for fresh news every few hours, and shows it in a Feed tab in hermes dashboard."
+author: j4ckxyz
+kind: standalone
+platforms:
+  - linux
+  - macos
+provides_tools:
+  - feed_chat_buffer_read
+  - feed_chat_buffer_ack
+  - feed_interests_get
+  - feed_interest_upsert
+  - feed_run_start
+  - feed_seen_urls
+  - feed_item_add
+  - feed_run_finish
+  - feed_interest_update
+  - feed_preference_add
+  - feed_preference_remove
+  - feed_settings
+  - feed_schedule
+provides_hooks:
+  - post_llm_call

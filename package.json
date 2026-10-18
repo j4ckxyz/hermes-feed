@@ -1,0 +1,15 @@
+{
+  "name": "hermes-feed-dashboard",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "build:js": "esbuild dashboard/src/index.jsx --bundle --format=iife --target=es2020 --minify --jsx-factory=React.createElement --jsx-fragment=React.Fragment --outfile=dashboard/dist/index.js",
+    "build:css": "tailwindcss -i dashboard/src/styles.css -o dashboard/dist/style.css --minify",
+    "build": "npm run build:js && npm run build:css"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "4.1.13",
+    "esbuild": "0.25.10",
+    "tailwindcss": "4.1.13"
+  }
+}
